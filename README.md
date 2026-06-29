@@ -26,7 +26,7 @@ All results are reported using an input resolution of `640 × 640`.
 ### 1. Clone the repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/wuzhongmiwu/DFR-DEIM
 cd DFR-DEIM
 ```
 
