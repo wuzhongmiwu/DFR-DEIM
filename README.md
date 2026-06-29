@@ -89,16 +89,10 @@ Please modify the dataset paths in the configuration files before training or ev
 
 ## Training
 
-Train DFR-DEIM on SIMD:
+Train DFR-DEIM
 
 ```bash
 python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml
-```
-
-Train DFR-DEIM on RSOD:
-
-```bash
-python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg_rsod.yml
 ```
 
 If only one configuration file is provided, please modify the dataset path, number of classes, category names, and training schedule according to the target dataset.
@@ -121,7 +115,7 @@ For RSOD, replace the configuration file and checkpoint path accordingly.
 Run inference on custom aerial images:
 
 ```bash
-python inference.py \
+python tools/inference/detect/torch_inf.py \
   -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml \
   -r path/to/checkpoint.pth \
   --input path/to/images \
@@ -155,7 +149,7 @@ If this work is useful for your research, please consider citing:
 ```bibtex
 @misc{li2026dfrdeim,
   title={DFR-DEIM: Detail-Aware Feature Recalibration Network for Efficient Aerial Object Detection},
-  author={Li, Jiajia and Huang, Yuan},
+  author={Huang, Yuan and Li, Jiajia},
   year={2026},
   note={Manuscript under review}
 }
@@ -165,9 +159,6 @@ If this work is useful for your research, please consider citing:
 
 This implementation is developed for aerial object detection research. We thank the contributors of related open-source detection frameworks and the providers of the SIMD and RSOD datasets.
 
-## License
-
-Please follow the license of this repository and the licenses of the datasets and third-party code used in this project.
 
 ## Contact
 
