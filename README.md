@@ -1,6 +1,6 @@
 # DFR-DEIM: Detail-Aware Feature Recalibration Network for Efficient Aerial Object Detection
 
-This repository provides the official implementation of **DFR-DEIM**, a detail-aware feature recalibration network for efficient aerial object detection.
+This repository provides the implementation of **DFR-DEIM**, a detail-aware feature recalibration network for efficient aerial object detection.
 
 DFR-DEIM is designed for aerial remote sensing images with large scale variations, dense object distributions, complex backgrounds, and boundary-sensitive targets. The method improves multi-scale feature encoding by introducing a **Detail-Aware Feature Recalibration Pyramid Network (DFR-PN)**, together with **Scale-Aware Feature Enhancement (SFE)**, **Edge-Guided Reduction (EGR)**, and **Edge-Guided Upsampling (EGU)** modules.
 
@@ -10,7 +10,7 @@ DFR-DEIM is designed for aerial remote sensing images with large scale variation
 * **SFE**: A scale-aware feature enhancement module with dynamic multi-kernel receptive-field selection.
 * **EGR**: An edge-guided reduction module that preserves boundary cues during downsampling.
 * **EGU**: An edge-guided upsampling module that enhances boundary-sensitive details during feature reconstruction.
-* **Efficient detection**: DFR-DEIM achieves improved detection accuracy while maintaining compact model complexity.
+* **Efficient detection**: DFR-DEIM improves detection accuracy while maintaining compact model complexity.
 
 ## Main Results
 
@@ -19,14 +19,14 @@ DFR-DEIM is designed for aerial remote sensing images with large scale variation
 | SIMD    |                69.6 |             84.6 |             81.8 | 12.76M |   37.3 |
 | RSOD    |                63.9 |             93.8 |             69.2 | 12.76M |   37.3 |
 
-All results are reported using an input resolution of `640 × 640`.
+All results are reported with an input resolution of `640 × 640`.
 
 ## Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/wuzhongmiwu/DFR-DEIM
+git clone https://github.com/wuzhongmiwu/DFR-DEIM.git
 cd DFR-DEIM
 ```
 
@@ -59,7 +59,7 @@ Experiments are conducted on two public aerial remote sensing object detection d
 * **SIMD**
 * **RSOD**
 
-Please download the datasets from their official sources and organize them following the expected format in the configuration files.
+Please download the datasets from their official sources and organize them according to the paths specified in the configuration files.
 
 A common dataset structure is:
 
@@ -85,50 +85,79 @@ datasets/
         └── test.json
 ```
 
-If your dataset uses another annotation format, please convert it to the format required by the training configuration.
+Please modify the dataset paths in the configuration files before training or evaluation.
 
 ## Training
 
-Train DFR-DEIM 
+Train DFR-DEIM on SIMD:
 
 ```bash
 python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml
 ```
 
+Train DFR-DEIM on RSOD:
+
+```bash
+python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg_rsod.yml
+```
+
+If only one configuration file is provided, please modify the dataset path, number of classes, category names, and training schedule according to the target dataset.
 
 ## Evaluation
 
-Evaluate a trained model
+Evaluate a trained model:
 
 ```bash
-python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml weight.pth 
+python train.py \
+  -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml \
+  -r path/to/checkpoint.pth \
+  --test-only
 ```
+
+For RSOD, replace the configuration file and checkpoint path accordingly.
 
 ## Inference
 
 Run inference on custom aerial images:
 
 ```bash
--c: Path of configuration yaml file
--r: Path of trained model weight file
---input: Input source, supports single image, single video, or an entire folder
---output: Directory path to save inference results
--t: Confidence threshold for detection filtering, default value is 0.2
-
+python inference.py \
+  -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml \
+  -r path/to/checkpoint.pth \
+  --input path/to/images \
+  --output runs/inference \
+  -t 0.2
 ```
 
+Arguments:
+
+```text
+-c        Path to the configuration YAML file.
+-r        Path to the trained model checkpoint.
+--input   Input source, including a single image, video, or image folder.
+--output  Directory for saving inference results.
+-t        Confidence threshold for detection filtering. The default value is 0.2.
+```
+
+## Checkpoints
+
+The trained checkpoints can be provided upon reasonable request or released after acceptance.
+
+| Model    | Dataset | Checkpoint  |
+| -------- | ------- | ----------- |
+| DFR-DEIM | SIMD    | Coming soon |
+| DFR-DEIM | RSOD    | Coming soon |
 
 ## Citation
 
 If this work is useful for your research, please consider citing:
 
 ```bibtex
-@article{li2026dfrdeim,
+@misc{li2026dfrdeim,
   title={DFR-DEIM: Detail-Aware Feature Recalibration Network for Efficient Aerial Object Detection},
   author={Li, Jiajia and Huang, Yuan},
-  journal={Journal of the Indian Society of Remote Sensing},
   year={2026},
-  note={Under review}
+  note={Manuscript under review}
 }
 ```
 
@@ -138,7 +167,7 @@ This implementation is developed for aerial object detection research. We thank 
 
 ## License
 
-This project is released under the license specified in the `LICENSE` file. Please also follow the licenses of the datasets and third-party code used in this repository.
+Please follow the license of this repository and the licenses of the datasets and third-party code used in this project.
 
 ## Contact
 
