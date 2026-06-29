@@ -92,7 +92,7 @@ If your dataset uses another annotation format, please convert it to the format 
 Train DFR-DEIM on SIMD:
 
 ```bash
-python train.py -c configs/yaml/deim_hgnetv2_n_mg.yml
+python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml
 ```
 
 
@@ -101,7 +101,7 @@ python train.py -c configs/yaml/deim_hgnetv2_n_mg.yml
 Evaluate a trained model
 
 ```bash
-python train.py -c configs/yaml/deim_hgnetv2_n_mg.yml --test-only
+python train.py -c configs/yaml/deim_dfine_hgnetv2_n_mg.yml --test-only
 ```
 
 ## Inference
