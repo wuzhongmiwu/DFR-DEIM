@@ -2,7 +2,7 @@
 
 This repository provides the implementation of **DFR-DEIM**, a detail-aware feature recalibration network for efficient aerial object detection.
 
-DFR-DEIM is designed for aerial remote sensing images with large scale variations, dense object distributions, complex backgrounds, and boundary-sensitive targets. The method improves multi-scale feature encoding by introducing a **Detail-Aware Feature Recalibration Pyramid Network (DFR-PN)**, together with **Scale-Aware Feature Enhancement (SFE)**, **Edge-Guided Reduction (EGR)**, and **Edge-Guided Upsampling (EGU)** modules.
+DFR-DEIM is designed for aerial remote sensing images with large scale variations, dense object distributions, complex backgrounds, and boundary-sensitive targets. The method improves multi-scale feature encoding by introducing a **Detail-Aware Feature Recalibration Pyramid Network (DFR-PN)**, together with **Scale-Aware Feature Enhancement (SFE)**, **Edge-Guided Reduction (EGR)**, and **Edge-Guided Upsampling (EGU)** modules.Compared with DEIM-S, DFR-DEIM introduces moderate computational overhead due to the detail-aware recalibration and edge-guided scale transformation modules. The parameter size increases from 10.18M to 12.76M and GFLOPs increase from 24.9 to 37.3, while mAP50:95 improves by 3.7 points on SIMD and 2.6 points on RSOD.
 
 ## Highlights
 
